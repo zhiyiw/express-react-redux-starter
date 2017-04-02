@@ -8,12 +8,14 @@ const todoFakeData = [
 ];
 
 function Todo() {
+  const todos = (todoData) => todoData.map((todo) => {
+    console.log(todo)
+    return <TodoItem todo={todo} />
+  });
   return (
     <div className="container todo">
       <h1>Todo</h1>
-      <TodoItem text={'todo-1'} />
-      <TodoItem text={'todo-2'} />
-      <TodoItem text={'todo-3'} />
+      {todos(todoFakeData)}
     </div>
   );
 }
