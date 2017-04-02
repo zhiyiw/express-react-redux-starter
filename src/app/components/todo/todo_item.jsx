@@ -1,12 +1,20 @@
 import React from 'react';
 
 const TodoItem = (props) => {
-  console.log(props)
+  const checkboxChangeHandler = (ev) => {
+    console.log(ev.target.name)
+    props.action(ev.target.name)
+  }
   return (
     <div>
       <span>{props.todo.id} </span>
       <span>{props.todo.title} </span>
-      <span>{props.todo.done ? "yes" : "no"}</span>
+      <input
+        name={props.todo.id}
+        type="checkbox"
+        onChange={checkboxChangeHandler}
+        checked={props.todo.done}
+        />
     </div>
   )
 }

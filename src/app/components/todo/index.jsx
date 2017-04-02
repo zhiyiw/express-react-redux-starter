@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TodoItem from './todo_item';
 
 const todoFakeData = [
@@ -7,17 +7,31 @@ const todoFakeData = [
   { id: 3, title: 'Demo for react-redux', done: false }
 ];
 
-function Todo() {
-  const todos = (todoData) => todoData.map((todo) => {
-    console.log(todo)
-    return <TodoItem todo={todo} />
-  });
-  return (
-    <div className="container todo">
-      <h1>Todo</h1>
-      {todos(todoFakeData)}
-    </div>
-  );
+class Todo extends Component {
+  constructor() {
+    super();
+    this.state = { todos: todoFakeData };
+  }
+
+  changeTodoState(id) {
+    let newTodos = Object.assign([], this.state.todos)
+    newTodos.forEach( todo => {
+      if(todo.id == id){ todo.done = !todo.done}
+    })
+    this.setState({todos: newTodos})
+  }
+
+  render() {
+    const todos = (todoData) => todoData.map((todo) => {
+      return <TodoItem todo={todo} action={::this.changeTodoState} />;
+    });
+    return (
+      <div className="container todo">
+        <h1>Todo</h1>
+        {todos(this.state.todos)}
+      </div>
+    );
+  }
 }
 
 export default Todo;
