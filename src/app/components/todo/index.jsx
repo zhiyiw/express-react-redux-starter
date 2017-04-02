@@ -1,11 +1,21 @@
 import React from 'react';
+import TodoItem from './todo_item';
+
+const todoFakeData = [
+  { id: 1, title: 'Demo for react', done: true },
+  { id: 2, title: 'Demo for redux', done: false },
+  { id: 3, title: 'Demo for react-redux', done: false }
+];
 
 function Todo() {
   return (
     <div className="container todo">
       <h1>Todo</h1>
+      <TodoItem text={'todo-1'} />
+      <TodoItem text={'todo-2'} />
+      <TodoItem text={'todo-3'} />
     </div>
-  )
+  );
 }
 
 export default Todo;
